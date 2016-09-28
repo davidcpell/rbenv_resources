@@ -1,6 +1,6 @@
 # # encoding: utf-8
 
-# Inspec test for recipe ws_ruby::default
+# Inspec test for recipe rbenv_resources::default
 
 # The Inspec reference, with examples and extensive documentation, can be
 # found at https://docs.chef.io/inspec_reference.html

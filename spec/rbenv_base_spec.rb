@@ -6,11 +6,18 @@ describe 'resource_fixtures::rbenv_base' do
   end
 
   context 'when a prefix is specified but everything else is default' do
-    it 'clones the rbenv repo' do
-      prefix = '/test_prefix'
-      opts   = { destination: prefix, action: [:sync], revision: 'master', repository: 'https://github.com/rbenv/rbenv' }
+    let(:prefix) { '/test_prefix' }
+    let(:basic_git_opts) { { action: [:sync], revision: 'master' } }
 
-      expect(chef_run).to sync_git('/test_prefix').with(opts)
+    it 'clones the rbenv repo' do
+      rbenv_opts = basic_git_opts.merge(destination: prefix, repository: 'https://github.com/rbenv/rbenv')
+
+      expect(chef_run).to sync_git('/test_prefix').with(rbenv_opts)
+    end
+
+    it 'installs ruby-build' do
+      expect(chef_run).to create_directory('/test_prefix/.rbenv/plugins')
+      expect(chef_run).to sync_git('/test_prefix/.rbenv/plugins/ruby-build').with(basic_git_opts)
     end
   end
 end
