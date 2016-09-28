@@ -1,1 +1,1 @@
-rbenv_base '/test_prefix'
+rbenv_base '/opt'
