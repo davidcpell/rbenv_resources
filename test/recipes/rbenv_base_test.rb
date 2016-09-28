@@ -12,3 +12,8 @@ end
 describe directory('/opt/.rbenv/plugins/ruby-build') do
   it { should exist }
 end
+
+describe file('/usr/local/bin/rbenv') do 
+  it { should be_symlink }
+  its('link_path') { should eq '/opt/.rbenv/libexec/rbenv' }
+end

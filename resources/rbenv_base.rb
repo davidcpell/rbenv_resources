@@ -17,6 +17,10 @@ action :install do
     revision    git_revision
   end
 
+  link '/usr/local/bin/rbenv' do 
+    to "#{prefix}/.rbenv/bin/rbenv"
+  end
+
   if ruby_build
     directory plugins
 
