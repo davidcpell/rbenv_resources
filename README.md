@@ -1,4 +1,3 @@
-# ws_ruby
+# rbenv_resources
 
-TODO: Enter the cookbook description here.
-
+A resource cookbook for rbenv.
