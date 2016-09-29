@@ -23,15 +23,23 @@ This is the main resource, used to install `rbenv` from its GitHub repo.
 ### ruby_version
 Use this resource to install different versions of Ruby. To see what versions are available, go [here](https://github.com/rbenv/ruby-build/tree/master/share/ruby-build).
 
+| attribute name | description                | type   | required |
+|----------------|----------------------------|--------|----------|
+| version        | version of Ruby to install | String | true     |
+
 ### global_ruby
 Use this resource to set the global Ruby version on your system.
+
+| attribute name | description                        | type   | required |
+|----------------|------------------------------------|--------|----------|
+| version        | version of Ruby to enable globally | String | true     |
 
 ## Usage
 Use the resources from this cookbook in the same way you would use the standard Chef-provided resources like `file` and `directory`. To make the resources available, make sure to add this line to your `metadata.rb`:
 
 `depends 'rbenv_resources'`
 
-To see an example of how the resources could be used in a recipe to install Ruby 2.2.2, see [examples/example_recipe.rb]().
+To see an example of how the resources could be used in a recipe to install Ruby 2.2.2, see the [examples](https://github.com/davidcpell/rbenv_resources/tree/master/examples).
 
 ## Author
 [David Pell](https://www.github.com/davidcpell)  
