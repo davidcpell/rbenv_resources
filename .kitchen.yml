@@ -17,6 +17,7 @@ suites:
     run_list:
       - recipe[resource_fixtures::_git]
       - recipe[resource_fixtures::rbenv_base]
+      - recipe[resource_fixtures::ruby_version]
     verifier:
       inspec_tests:
         - test/recipes

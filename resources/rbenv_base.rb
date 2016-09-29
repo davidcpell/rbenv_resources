@@ -29,5 +29,11 @@ action :install do
       repository 'https://github.com/rbenv/ruby-build.git'
       revision   'master'
     end
+
+    Dir["#{plugins}/ruby-build/bin/*"].each do |file|
+      link "/usr/local/bin/#{Pathname.new(file).basename}" do 
+        to file
+      end
+    end
   end
 end
