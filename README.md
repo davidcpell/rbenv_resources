@@ -1,6 +1,9 @@
 # rbenv_resources
 A resource cookbook for managing Ruby versions with [rbenv](https://github.com/rbenv/rbenv). This cookbook has *no* recipes. It exists purely to provide you with custom resources to use in your recipe cookbook.
 
+## Requirements
+This cookbook requires that `git` be installed on the target system prior. This cookbook does *not* provide a `git` recipe.
+
 ## Platforms
 This cookbook has been tested on the following platforms:
 
