@@ -10,15 +10,16 @@ verifier:
 
 platforms:
   - name: ubuntu-16.04
+  - name: ubuntu-14.04
   - name: centos-7.2
 
 suites:
   - name: default
     run_list:
       - recipe[resource_fixtures::_git]
-      - recipe[resource_fixtures::rbenv_base]
-      - recipe[resource_fixtures::ruby_version]
-      - recipe[resource_fixtures::global_ruby]
+      - recipe[resource_fixtures::system_rbenv]
+      # - recipe[resource_fixtures::ruby_version]
+      # - recipe[resource_fixtures::global_ruby]
     verifier:
       inspec_tests:
         - test/recipes
