@@ -1,7 +1,8 @@
 resource_name :system_rbenv
 
 property :prefix, String, name_property: true
-property :ruby_versions, [Array], required: true
+property :rbenv_users, Array, required: true
+property :ruby_versions, Array, required: true
 property :global_ruby, String, required: true
 
 default_action :install
@@ -10,10 +11,16 @@ action :install do
   rbenv_root  = ::File.join(prefix, 'rbenv')
   rbenv_plugs = ::File.join(rbenv_root, 'plugins')
   rbenv_bin   = ::File.join(rbenv_root, 'bin')
+  rbenv_vers  = ::File.join(rbenv_root, 'versions')
+  rbenv_shims = ::File.join(rbenv_root, 'shims')
   ENV['RBENV_ROOT'] = rbenv_root
   ENV['PATH'] = "#{rbenv_bin}:#{ENV['PATH']}"
 
   install_packages
+
+  group 'rbenv' do 
+    members rbenv_users
+  end
 
   git rbenv_root do
     action      :sync
@@ -43,12 +50,10 @@ action :install do
     code   'eval "$(rbenv init -)"'
   end
 
-  bash "install ruby #{ruby_versions.first}" do 
-    code   "#{rbenv_bin}/rbenv install #{ruby_versions.first}"
-    not_if "#{rbenv_bin}/rbenv versions".include?(ruby_versions.first)
-  end
-
-  bash "set global ruby to #{global_ruby}" do 
-    code "#{rbenv_bin}/rbenv global #{global_ruby}"
+  bash 'set permissions on rbenv paths' do 
+    code <<-EOF
+    chmod -R 775 /opt/rbenv
+    chgrp -R rbenv /opt/rbenv
+    EOF
   end
 end
