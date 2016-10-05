@@ -1,9 +1,4 @@
-# # encoding: utf-8
-
-# Inspec test for recipe rbenv_resources::default
-
-# The Inspec reference, with examples and extensive documentation, can be
-# found at https://docs.chef.io/inspec_reference.html
+# Inspec test for recipe resource_fixtures::system_rbenv
 
 describe directory('/opt/rbenv/plugins/ruby-build') do
   it { should exist }

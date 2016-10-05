@@ -18,8 +18,8 @@ suites:
     run_list:
       - recipe[resource_fixtures::_git]
       - recipe[resource_fixtures::system_rbenv]
-      # - recipe[resource_fixtures::ruby_version]
-      # - recipe[resource_fixtures::global_ruby]
+      - recipe[resource_fixtures::ruby_version]
+      - recipe[resource_fixtures::global_ruby]
     verifier:
       inspec_tests:
         - test/recipes
