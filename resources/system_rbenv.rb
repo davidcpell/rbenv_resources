@@ -45,6 +45,19 @@ action :install do
     notifies :run, 'bash[initialize rbenv]', :immediately
   end
 
+  ruby_block 'append init script' do 
+    block do 
+      ::File.open(init_file, 'a') do |f|
+        f.puts <<-EOF.gsub(/^\s+/, '')
+        \n
+        export RBENV_ROOT=#{rbenv_root}
+        export PATH="#{rbenv_bin}:$PATH"
+        eval "$(rbenv init -)"
+        EOF
+      end
+    end
+  end
+
   bash 'initialize rbenv' do 
     action :nothing
     code   'eval "$(rbenv init -)"'
