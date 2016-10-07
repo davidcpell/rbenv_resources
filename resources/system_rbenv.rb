@@ -65,8 +65,8 @@ action :install do
 
   bash 'set permissions on rbenv paths' do 
     code <<-EOF
-    chmod -R 775 /opt/rbenv
-    chgrp -R rbenv /opt/rbenv
+    chmod -R 775 #{rbenv_root}
+    chgrp -R rbenv #{rbenv_root}
     EOF
   end
 end
