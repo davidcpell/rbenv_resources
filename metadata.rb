@@ -10,3 +10,4 @@ supports 'ubuntu', '>= 14.04'
 supports 'centos', '= 7.2'
 
 source_url 'https://github.com/davidcpell/rbenv_resources'
+issues_url 'https://github.com/davidcpell/rbenv_resources/issues'
