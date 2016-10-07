@@ -19,7 +19,8 @@ This is the main resource, used to install `rbenv` and make it available to all 
 | attribute name | description                            | type                    | required? |
 |----------------|----------------------------------------|-------------------------|---------------|
 | prefix         | The location where rbenv will be installed.  This is the `name` property and is therefore required by default. | String                  | yes |
-| rbenv_users    | Users that will be added to the `rbenv` group | Array | yes
+| rbenv_users    | Users that will be added to the `rbenv` group | Array | yes  |
+| action         | Action to take on the `rbenv` program. Only currently available option is `:install`. Defaults to `:install`.| Symbol | no
 
 ### ruby_version
 Use this resource to install a version of Ruby. To see what versions are available, go [here](https://github.com/rbenv/ruby-build/tree/master/share/ruby-build).
@@ -27,6 +28,7 @@ Use this resource to install a version of Ruby. To see what versions are availab
 | attribute name | description                | type   | required? |
 |----------------|----------------------------|--------|----------|
 | version        | Version of Ruby to install. This is the `name` property and is therefore required by default. | String | yes     |
+| action         | Action to take on the Ruby version. Options are `:install` and `:uninstall`. Defaults to `:install`.| Symbol  | no 
 
 ### global_ruby
 Use this resource to set the global Ruby version on your system.
@@ -34,6 +36,7 @@ Use this resource to set the global Ruby version on your system.
 | attribute name | description                        | type   | required? |
 |----------------|------------------------------------|--------|----------|
 | version        | Version of Ruby to enable globally. This is the `name` property and is therefore required by default. | String | yes     |
+| action | Action to take on the global Ruby version. Only available option is `:set`. Defaults to `:set`. | Symbol | no
 
 ## Usage
 Use the resources from this cookbook in the same way you would use the standard Chef-provided resources like `file` and `directory`. To make the resources available, make sure to add this line to your `metadata.rb`:
