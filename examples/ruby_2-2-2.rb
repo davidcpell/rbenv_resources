@@ -1,6 +1,5 @@
-rbenv_base
+system_ruby '/usr/local'
 
 ruby_version '2.2.2'
-ruby_version '2.3.0'
 
 global_ruby '2.2.2'
