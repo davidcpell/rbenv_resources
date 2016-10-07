@@ -23,3 +23,12 @@ suites:
     verifier:
       inspec_tests:
         - test/recipes
+  - name: uninstall
+    run_list:
+      - recipe[resource_fixtures::_git]
+      - recipe[resource_fixtures::system_rbenv]
+      - recipe[resource_fixtures::ruby_version]
+      - recipe[resource_fixtures::ruby_version-uninstall]
+    verifier:
+      inspec_tests:
+        - test/recipes/uninstall
