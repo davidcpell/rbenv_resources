@@ -36,22 +36,13 @@ action :install do
     revision   'master'
   end
 
-  template '/etc/profile.d/rbenv.sh' do 
-    cookbook  'rbenv_resources'
-    mode      '0755'
-    source    'rbenv.sh.erb'
-    variables 'rbenv_root' => rbenv_root
-
-    notifies :run, 'bash[initialize rbenv]', :immediately
-  end
-
   ruby_block 'append init script' do 
     block do 
       ::File.open(init_file, 'a') do |f|
         f.puts <<-EOF.gsub(/^\s+/, '')
         \n
         export RBENV_ROOT=#{rbenv_root}
-        export PATH="#{rbenv_bin}:$PATH"
+        export PATH="#{rbenv_bin}:#{rbenv_shims}:$PATH"
         eval "$(rbenv init -)"
         EOF
       end
@@ -63,10 +54,5 @@ action :install do
     code   'eval "$(rbenv init -)"'
   end
 
-  bash 'set permissions on rbenv paths' do 
-    code <<-EOF
-    chmod -R 775 #{rbenv_root}
-    chgrp -R rbenv #{rbenv_root}
-    EOF
-  end
+  set_rbenv_permissions
 end

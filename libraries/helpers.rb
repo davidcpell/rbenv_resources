@@ -4,3 +4,12 @@ def install_packages
     package packages
   end
 end
+
+def set_rbenv_permissions
+  bash 'set permissions on rbenv paths' do 
+    code <<-EOF
+    chmod -R 775 #{ENV['RBENV_ROOT']}
+    chgrp -R rbenv #{ENV['RBENV_ROOT']}
+    EOF
+  end
+end

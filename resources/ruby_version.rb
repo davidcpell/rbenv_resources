@@ -10,6 +10,8 @@ action :install do
       shell_out('rbenv versions').stdout.include?(version)
     end
   end
+
+  set_rbenv_permissions
 end
 
 action :uninstall do
